@@ -11,7 +11,7 @@ module Methodphitamine
   # The class instantiated by the it() and its() methods from monkey_patches.rb.
   class It
   
-    undef_method(*(instance_methods - %w*__id__ __send__*))
+    undef_method(*(instance_methods.map(&:to_sym) - [:__id__, :__send__, :object_id]))
   
     def initialize
       @methods = []
